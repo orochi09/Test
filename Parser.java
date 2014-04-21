@@ -24,6 +24,7 @@ public class Parser {
 		}
 		int wordCount = 0;
 		int lineCount = 0;
+		long byteCount = file.length();
 
 		while(scanner1.hasNextLine()){
 			while(scanner1.hasNext()){
@@ -40,6 +41,7 @@ public class Parser {
 			
 		System.out.println(wordCount);
 		System.out.println(lineCount);	
+		System.out.println(byteCount);
 	}
 	public static void main(String[] args){
 		Parser ps = new Parser();
