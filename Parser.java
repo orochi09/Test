@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -16,6 +17,8 @@ public class Parser {
 		}
 		
 		int counter = 0; //for checking if the whole line is ignored.
+		ArrayList<Integer> numOfSections = new ArrayList<Integer>(); //store the amount of sections of each article.
+		int articleNumber = 0;
 		
 		int wordCount = 0;
 		int lineCount = 0;
@@ -37,11 +40,22 @@ public class Parser {
 			if(!nextLine.equalsIgnoreCase("")){
 				String[] lineArray = nextLine.split(" ");
 				wordCount += lineArray.length;
+				if(articleNumber != 0){
+					if(lineArray.length == 2){
+						if(lineArray[0].equals("Section")){
+							int oldValue = numOfSections.get(articleCount - 1);
+							numOfSections.set(articleCount - 1, (oldValue + 1));
+							sectionCount++;
+						}
+					}
+				}
 				if(lineArray.length == 2){
 					if(lineArray[0].equals("Article")){
 						articleCount++;
-					}else if(lineArray[0].equals("Section")){
-						sectionCount++;
+						articleNumber++;
+						numOfSections.add(0); //init the position of the corresponding article in the arraylist.
+//					}else if(lineArray[0].equals("Section")){
+//						sectionCount++;
 					}
 				}
 				for(String s : lineArray){ 
@@ -110,6 +124,10 @@ public class Parser {
 		System.out.println("proper: " + properLineCount + "    " + properWordCount + "   " + properCharCount + " " + fileName);	
 		System.out.println("Total Articles: " + articleCount);
 		System.out.println("Total Sections: " + sectionCount);
+		System.out.println("Total Sections per Article:");
+		for(int i = 0; i < articleCount; i++){
+			System.out.println("    Article " + (i+1) + ": " + numOfSections.get(i));
+		}
 	}
 	public static void main(String[] args){
 		Parser ps = new Parser();
