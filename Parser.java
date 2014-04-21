@@ -1,31 +1,51 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 
 public class Parser {
-	public int wordCount(String fileName){
+	public void wordCount(String fileName){
 		File file = new File(fileName);
-		Scanner scanner = null;
+		Scanner scanner1 = null;
 		try {
-			scanner = new Scanner(file);
+			scanner1 = new Scanner(file);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Scanner scanner2 = null;
+		try {
+			scanner2 = new Scanner(file);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		int wordCount = 0;
-		while(scanner.hasNextLine()){
-			while(scanner.hasNext()){
+		int lineCount = 0;
+
+		while(scanner1.hasNextLine()){
+			while(scanner1.hasNext()){
 				wordCount++;
-				String word = scanner.next();
+				String word = scanner1.next();
 			}
-			String nextLine = scanner.nextLine();
+			String nextLine = scanner1.nextLine();		
 		}
+		
+		while(scanner2.hasNextLine()){
+			lineCount++;
+			String nextLine = scanner2.nextLine();
+		}
+			
 		System.out.println(wordCount);
-		return wordCount;	
+		System.out.println(lineCount);	
 	}
 	public static void main(String[] args){
 		Parser ps = new Parser();
+//		String fileName = "res/constitution.txt";
+//		ps.wordCount(fileName);
 		ps.wordCount(args[0]);
+
 	}
 }
