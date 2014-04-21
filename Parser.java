@@ -58,47 +58,47 @@ public class Parser {
 				for(String s : lineArray){ 
 					if(s.equals("")){
 						wordCount--; //make sure extra space is not counted.
-					}else if(s.equals("I")){
+					}else if(s.equals("I") || s.equals("I,") || s.equals("I.")){
 						ignoreWordCount++;
 						ignoreCharCount++;
 						counter++;
-					}else if(s.equals("We")){
+					}else if(s.equals("We") || s.equals("We,") || s.equals("We.")){
 						ignoreWordCount++;
 						ignoreCharCount += 2;
 						counter++;
-					}else if(s.equals("You")){
+					}else if(s.equals("You") || s.equals("You,") || s.equals("You.")){
 						ignoreWordCount++;
 						ignoreCharCount += 3;
 						counter++;
-					}else if(s.equals("They")){
+					}else if(s.equals("They") || s.equals("They,") || s.equals("They.")){
 						ignoreWordCount++;
 						ignoreCharCount += 4;
 						counter++;
-					}else if(s.equals("a")){
+					}else if(s.equals("a") || s.equals("a,") || s.equals("a.")){
 						ignoreWordCount++;
 						ignoreCharCount++;
 						counter++;
-					}else if(s.equals("and")){
+					}else if(s.equals("and") || s.equals("and,") || s.equals("and.")){
 						ignoreWordCount++;
 						ignoreCharCount += 3;
 						counter++;
-					}else if(s.equals("the")){
+					}else if(s.equals("the") || s.equals("the,") || s.equals("the.")){
 						ignoreWordCount++;
 						ignoreCharCount += 3;
 						counter++;
-					}else if(s.equals("that")){
+					}else if(s.equals("that") || s.equals("that,") || s.equals("that.")){
 						ignoreWordCount++;
 						ignoreCharCount += 4;
 						counter++;
-					}else if(s.equals("of")){
+					}else if(s.equals("of") || s.equals("of,") || s.equals("of.")){
 						ignoreWordCount++;
 						ignoreCharCount += 2;
 						counter++;
-					}else if(s.equals("for")){
+					}else if(s.equals("for") || s.equals("for,") || s.equals("for.")){
 						ignoreWordCount++;
 						ignoreCharCount += 3;
 						counter++;
-					}else if(s.equals("with")){
+					}else if(s.equals("with") || s.equals("with,") || s.equals("with.")){
 						ignoreWordCount++;
 						ignoreCharCount += 4;
 						counter++;

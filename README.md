@@ -18,7 +18,7 @@ Part3:
 
 Zhes-MacBook-Pro:test Owen_Cathie$ java Parser constitution.txt 
 all: 872    7652   45119 constitution.txt
-proper: 872    6020   40868 constitution.txt
+proper: 872    6014   40851 constitution.txt
 Total Articles: 7
 Total Sections: 21
 Total Sections per Article:
