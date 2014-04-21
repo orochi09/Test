@@ -11,14 +11,14 @@ public class Parser {
 		try {
 			scanner1 = new Scanner(file);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			System.err.println("Error: " + fileName + " not found.");
 			e.printStackTrace();
 		}
 		
+		int counter = 0; //for checking if the whole line is ignored.
 		
 		int wordCount = 0;
 		int lineCount = 0;
-//		long byteCount = file.length();
 		int charCount = 0;
 		
 		int ignoreWordCount = 0;
@@ -29,62 +29,72 @@ public class Parser {
 		while(scanner1.hasNextLine()){
 			String nextLine = scanner1.nextLine();
 			charCount += nextLine.length();
+			counter = 0;
 			if(!nextLine.equalsIgnoreCase("")){
 				String[] lineArray = nextLine.split(" ");
 				wordCount += lineArray.length;
-				for(String s : lineArray){
+				for(String s : lineArray){ 
 					if(s.equals("")){
-						wordCount--;
+						wordCount--; //make sure extra space is not counted.
 					}else if(s.equals("I")){
 						ignoreWordCount++;
 						ignoreCharCount++;
+						counter++;
 					}else if(s.equals("We")){
 						ignoreWordCount++;
 						ignoreCharCount += 2;
+						counter++;
 					}else if(s.equals("You")){
 						ignoreWordCount++;
 						ignoreCharCount += 3;
+						counter++;
 					}else if(s.equals("They")){
 						ignoreWordCount++;
 						ignoreCharCount += 4;
+						counter++;
 					}else if(s.equals("a")){
 						ignoreWordCount++;
 						ignoreCharCount++;
+						counter++;
 					}else if(s.equals("and")){
 						ignoreWordCount++;
 						ignoreCharCount += 3;
+						counter++;
 					}else if(s.equals("the")){
 						ignoreWordCount++;
 						ignoreCharCount += 3;
+						counter++;
 					}else if(s.equals("that")){
 						ignoreWordCount++;
 						ignoreCharCount += 4;
+						counter++;
 					}else if(s.equals("of")){
 						ignoreWordCount++;
 						ignoreCharCount += 2;
+						counter++;
 					}else if(s.equals("for")){
 						ignoreWordCount++;
 						ignoreCharCount += 3;
+						counter++;
 					}else if(s.equals("with")){
 						ignoreWordCount++;
 						ignoreCharCount += 4;
+						counter++;
 					}
-//					if(s.equals("I") || s.equals("We") || s.equals("You") || s.equals("They") || 
-//							s.equals("a") || s.equals("and") || s.equals("the") || s.equals("that")
-//							 || s.equals("of") || s.equals("for") || s.equals("with")){
-//						ignoreCount++;
-//					}
 				}
+				if(counter == lineArray.length){  //the whole line is ignored.
+					ignoreLineCount++;
+				}				
 			}
 			lineCount++;
 		}
 		charCount += lineCount; //add "\n" for each line
 		int properWordCount = wordCount - ignoreWordCount;
 		int properCharCount = charCount - ignoreCharCount;
+		int properLineCount = lineCount - ignoreLineCount;
 			
 		System.out.println("all: " + lineCount + "    " + wordCount + "   " + charCount + " " + fileName);	
-		System.out.println("proper: " + lineCount + "    " + properWordCount + "   " + properCharCount + " " + fileName);	
-//		System.out.println(charCount);
+		System.out.println("proper: " + properLineCount + "    " + properWordCount + "   " + properCharCount + " " + fileName);	
 	}
 	public static void main(String[] args){
 		Parser ps = new Parser();
