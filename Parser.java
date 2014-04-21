@@ -1,7 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 
@@ -54,8 +53,6 @@ public class Parser {
 						articleCount++;
 						articleNumber++;
 						numOfSections.add(0); //init the position of the corresponding article in the arraylist.
-//					}else if(lineArray[0].equals("Section")){
-//						sectionCount++;
 					}
 				}
 				for(String s : lineArray){ 
@@ -131,10 +128,6 @@ public class Parser {
 	}
 	public static void main(String[] args){
 		Parser ps = new Parser();
-//		String fileName = "res/constitution.txt";
-//		ps.wordCount(fileName);
 		ps.wordCount(args[0]);
-
-
 	}
 }
