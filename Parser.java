@@ -22,6 +22,7 @@ public class Parser {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		int wordCount = 0;
 		int lineCount = 0;
 		long byteCount = file.length();
@@ -39,9 +40,7 @@ public class Parser {
 			String nextLine = scanner2.nextLine();
 		}
 			
-		System.out.println(wordCount);
-		System.out.println(lineCount);	
-		System.out.println(byteCount);
+		System.out.println("     " + lineCount + "    " + wordCount + "   " + byteCount + " " + fileName);	
 	}
 	public static void main(String[] args){
 		Parser ps = new Parser();
