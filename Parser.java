@@ -21,11 +21,11 @@ public class Parser {
 			}
 			String nextLine = scanner.nextLine();
 		}
-		return wordCount;
-		
+		System.out.println(wordCount);
+		return wordCount;	
 	}
 	public static void main(String[] args){
 		Parser ps = new Parser();
-		System.out.println(ps.wordCount(args[0]));
+		ps.wordCount(args[0]);
 	}
 }
