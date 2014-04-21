@@ -15,34 +15,34 @@ public class Parser {
 			e.printStackTrace();
 		}
 		
-//		Scanner scanner2 = null;
-//		try {
-//			scanner2 = new Scanner(file);
-//		} catch (FileNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		Scanner scanner2 = null;
+		try {
+			scanner2 = new Scanner(file);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		int wordCount = 0;
 		int lineCount = 0;
 		long byteCount = file.length();
 
 		while(scanner1.hasNextLine()){
-//			while(scanner1.hasNext()){
-//				wordCount++;
-//				String word = scanner1.next();
-//			}
-			String nextLine = scanner1.nextLine();
-			if(nextLine.equalsIgnoreCase("")){
-				wordCount += nextLine.split(" ").length;
+			while(scanner1.hasNext()){
+				wordCount++;
+				String word = scanner1.next();
 			}
-			lineCount++;
+			String nextLine = scanner1.nextLine();
 		}
-		
-//		while(scanner2.hasNextLine()){
+//			if(nextLine.equalsIgnoreCase("")){
+//				wordCount += nextLine.split(" ").length;
+//			}
 //			lineCount++;
-//			String nextLine = scanner2.nextLine();
-//		}
+		
+		while(scanner2.hasNextLine()){
+			lineCount++;
+			String nextLine = scanner2.nextLine();
+		}
 			
 		System.out.println("     " + lineCount + "    " + wordCount + "   " + byteCount + " " + fileName);	
 	}
