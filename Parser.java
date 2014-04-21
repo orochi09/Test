@@ -26,7 +26,9 @@ public class Parser {
 		
 		int wordCount = 0;
 		int lineCount = 0;
-		long byteCount = file.length();
+//		long byteCount = file.length();
+		int ignoreCount = 0;
+		int charCount = 0;
 
 		while(scanner1.hasNextLine()){
 //			while(scanner1.hasNext()){
@@ -35,12 +37,18 @@ public class Parser {
 //			}
 			String nextLine = scanner1.nextLine();
 //		}
+			charCount += nextLine.length();
 			if(!nextLine.equalsIgnoreCase("")){
 				String[] lineArray = nextLine.split(" ");
 				wordCount += lineArray.length;
 				for(String s : lineArray){
 					if(s.equals("")){
 						wordCount--;
+					}
+					if(s.equals("I") || s.equals("We") || s.equals("You") || s.equals("They") || 
+							s.equals("a") || s.equals("and") || s.equals("the") || s.equals("that")
+							 || s.equals("of") || s.equals("for") || s.equals("with")){
+						ignoreCount++;
 					}
 				}
 			}
@@ -50,14 +58,18 @@ public class Parser {
 //			lineCount++;
 //			String nextLine = scanner2.nextLine();
 		}
+		charCount += lineCount; //add "\n" for each line
 			
-		System.out.println("     " + lineCount + "    " + wordCount + "   " + byteCount + " " + fileName);	
+		System.out.println("all: " + lineCount + "    " + wordCount + "   " + charCount + " " + fileName);	
+		System.out.println(ignoreCount);
+//		System.out.println(charCount);
 	}
 	public static void main(String[] args){
 		Parser ps = new Parser();
 //		String fileName = "res/constitution.txt";
 //		ps.wordCount(fileName);
 		ps.wordCount(args[0]);
+
 
 	}
 }
