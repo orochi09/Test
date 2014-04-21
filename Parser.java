@@ -25,6 +25,10 @@ public class Parser {
 		int ignoreCharCount = 0;
 		int ignoreLineCount = 0;
 		
+		int articleCount = 0;
+		int sectionCount = 0;
+		
+		
 
 		while(scanner1.hasNextLine()){
 			String nextLine = scanner1.nextLine();
@@ -33,6 +37,13 @@ public class Parser {
 			if(!nextLine.equalsIgnoreCase("")){
 				String[] lineArray = nextLine.split(" ");
 				wordCount += lineArray.length;
+				if(lineArray.length == 2){
+					if(lineArray[0].equals("Article")){
+						articleCount++;
+					}else if(lineArray[0].equals("Section")){
+						sectionCount++;
+					}
+				}
 				for(String s : lineArray){ 
 					if(s.equals("")){
 						wordCount--; //make sure extra space is not counted.
@@ -92,9 +103,13 @@ public class Parser {
 		int properWordCount = wordCount - ignoreWordCount;
 		int properCharCount = charCount - ignoreCharCount;
 		int properLineCount = lineCount - ignoreLineCount;
+		
+
 			
 		System.out.println("all: " + lineCount + "    " + wordCount + "   " + charCount + " " + fileName);	
 		System.out.println("proper: " + properLineCount + "    " + properWordCount + "   " + properCharCount + " " + fileName);	
+		System.out.println("Total Articles: " + articleCount);
+		System.out.println("Total Sections: " + sectionCount);
 	}
 	public static void main(String[] args){
 		Parser ps = new Parser();
